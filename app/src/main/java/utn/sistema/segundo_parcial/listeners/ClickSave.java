@@ -25,6 +25,9 @@ import java.util.List;
 import utn.sistema.segundo_parcial.POJOs.User;
 import utn.sistema.segundo_parcial.R;
 
+/**
+ * Clase para guardar User en SharedPreferences
+ */
 public class ClickSave implements AlertDialog.OnClickListener, CompoundButton.OnCheckedChangeListener
 {
     View view;
@@ -32,6 +35,12 @@ public class ClickSave implements AlertDialog.OnClickListener, CompoundButton.On
     List<User> users;
     SharedPreferences preferences;
 
+    /**
+     * Constructor que recibe Vista, Lista de User y SharedPreferences
+     * @param view Vista
+     * @param users Lista de User
+     * @param preferences SharedPreferences
+     */
     public ClickSave(View view, List<User> users, SharedPreferences preferences)
     {
         this.view = view;
@@ -39,6 +48,11 @@ public class ClickSave implements AlertDialog.OnClickListener, CompoundButton.On
         this.preferences = preferences;
     }
 
+    /**
+     * Método para obtener valores de Nuevo User y guardar en SharedPreferences
+     * @param dialogInterface Dialog
+     * @param i Botón
+     */
     @Override
     public void onClick(DialogInterface dialogInterface, int i)
     {
@@ -74,12 +88,24 @@ public class ClickSave implements AlertDialog.OnClickListener, CompoundButton.On
         }
     }
 
+    /**
+     * Método para verifica estado de ToggleButton
+     * @param compoundButton ToggleButton
+     * @param b valor booleano
+     */
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b)
     {
         this.admin = b;
     }
 
+    /**
+     * Validacion de datos de User
+     * @param userName Nombre de usuario
+     * @param rol Rol de Usuario
+     * @param admin Condicion de admin del Usuario
+     * @return Devuelve true si los datos son validos sino false
+     */
     private boolean validate(String userName, String rol, Boolean admin)
     {
         if(userName.isEmpty() || userName == null || rol.isEmpty() || rol == null || admin == null)

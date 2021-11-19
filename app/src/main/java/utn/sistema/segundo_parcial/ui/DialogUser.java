@@ -3,19 +3,17 @@ package utn.sistema.segundo_parcial.ui;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import org.w3c.dom.Text;
-
 import utn.sistema.segundo_parcial.POJOs.User;
-import utn.sistema.segundo_parcial.R;
 
+
+/**
+ * Dialogo para mostrar información de Usuario
+ */
 public class DialogUser extends AppCompatDialogFragment
 {
     User user;
@@ -31,6 +29,11 @@ public class DialogUser extends AppCompatDialogFragment
         this.query = query;
     }
 
+    /**
+     * Método para configurar vista de Dialog
+     * @param savedInstanceState
+     * @return
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState)

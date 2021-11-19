@@ -27,6 +27,9 @@ import utn.sistema.segundo_parcial.POJOs.User;
 import utn.sistema.segundo_parcial.R;
 import utn.sistema.segundo_parcial.listeners.ClickSave;
 
+/**
+ * Clase para agregar Usuario
+ */
 public class DialogAdd extends AppCompatDialogFragment implements AdapterView.OnItemSelectedListener {
     private List<User> users;
     private String[] roles;
@@ -36,6 +39,11 @@ public class DialogAdd extends AppCompatDialogFragment implements AdapterView.On
         this.users = users;
     }
 
+    /**
+     * Método para construir el Dialogo para Nuevo Usuario
+     * @param savedInstanceState
+     * @return
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState)
@@ -64,6 +72,10 @@ public class DialogAdd extends AppCompatDialogFragment implements AdapterView.On
         return builder.create();
     }
 
+    /**
+     * Método para manipular evento Dismiss
+     * @param dialog Dialog
+     */
     @Override
     public void onDismiss(@NonNull DialogInterface dialog)
     {
@@ -86,6 +98,11 @@ public class DialogAdd extends AppCompatDialogFragment implements AdapterView.On
 
     }
 
+    /**
+     * Método para obtener valores de roles de Usuario
+     * @param list Listado de User
+     * @return Devuelve array de String de Roles
+     */
     private String[] getRoles(List<User> list)
     {
         Set<String> roles = new HashSet<>();

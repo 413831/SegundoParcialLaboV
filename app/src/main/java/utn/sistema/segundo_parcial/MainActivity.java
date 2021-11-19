@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback,
         SharedPreferences preferences = getSharedPreferences("config", Context.MODE_PRIVATE);
         String users = preferences.getString("users", "empty");
 
+        // Si no existe el listado de usuarios ejecuto el GET del servicio
         if("empty".equals(users))
         {
             UserService userService = new UserService(handler);
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback,
             Log.d("SHARED", users);
             this.users = this.parseList(users);
         }
+        // Muestro usuarios en TextView
         TextView textView = super.findViewById(R.id.txtUsers);
         textView.setText(users);
     }
@@ -101,6 +103,11 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback,
         return true;
     }
 
+    /**
+     * Método para parsear un String de formato JSON en ArrayList de tipo User
+     * @param jsonString String en formato JSON
+     * @return List de tipo User
+     */
     private List parseList(String jsonString)
     {
         List<User> list = new ArrayList<>();
@@ -123,7 +130,6 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback,
         }
         return list;
     }
-
 
 
     @Override
@@ -164,10 +170,13 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback,
     @Override
     public boolean onQueryTextChange(String newText)
     {
-
         return false;
     }
 
+    /**
+     * Método para actualizar listado de Usuarios al cerrar Dialog para agregar nuevo Usuario
+     * @param dialogInterface Dialog del cual se obtiene evento dismiss
+     */
     @Override
     public void onDismiss(DialogInterface dialogInterface) {
         SharedPreferences preferences = getSharedPreferences("config", Context.MODE_PRIVATE);
