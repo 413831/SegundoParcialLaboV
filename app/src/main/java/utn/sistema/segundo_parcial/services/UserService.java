@@ -21,7 +21,7 @@ public class UserService extends  Thread
 
     private void getObjetos()
     {
-        String url = "http://192.168.1.36:3001/usuarios";
+        String url = "http://XXX.XXX.XX.XX:3001/usuarios";
 
         HttpConnection httpConnection = HttpConnection.getInstance();
         String s = httpConnection.obtenerElementos(url);
