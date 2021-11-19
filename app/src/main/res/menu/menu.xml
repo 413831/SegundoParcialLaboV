@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/itAdd"
+        app:showAsAction="always"
+        android:title="Popup"
+        android:icon="@android:drawable/ic_input_add"
+        ></item>
+
+    <item
+        android:id="@+id/itSearch"
+        app:showAsAction="always"
+        android:title="Buscar"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:icon="@android:drawable/ic_menu_search"/>
+
+</menu>
