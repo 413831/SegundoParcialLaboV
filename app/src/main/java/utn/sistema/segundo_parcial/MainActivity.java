@@ -29,6 +29,7 @@ import java.util.Set;
 import utn.sistema.segundo_parcial.POJOs.User;
 import utn.sistema.segundo_parcial.services.UserService;
 import utn.sistema.segundo_parcial.ui.DialogAdd;
+import utn.sistema.segundo_parcial.ui.DialogUser;
 
 public class MainActivity extends AppCompatActivity implements Handler.Callback, SearchView.OnQueryTextListener, DialogInterface.OnDismissListener
 {
@@ -131,12 +132,39 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback,
         SharedPreferences preferences = getSharedPreferences("config", Context.MODE_PRIVATE);
         String users = preferences.getString("users", "empty");
 
+        try
+        {
+            JSONArray jsonList = new JSONArray(users);
+            for (int i = 0; i < jsonList.length(); i++)
+            {
+                JSONObject userJson = jsonList.getJSONObject(i);
+                String username = userJson.getString("username");
 
+                if(query.equals(username.toLowerCase()))
+                {
+                    Integer id = userJson.getInt("id");
+                    String rol = userJson.getString("rol");
+                    Boolean admin = userJson.getBoolean("admin");
+                    User user = new User(id,username,rol,admin);
+                    DialogUser dialogUser = new DialogUser(user);
+                    dialogUser.show(getSupportFragmentManager(), "USER");
+                    return true;
+                }
+            }
+            DialogUser dialogUser = new DialogUser(query);
+            dialogUser.show(getSupportFragmentManager(), "USER");
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
-    public boolean onQueryTextChange(String newText) {
+    public boolean onQueryTextChange(String newText)
+    {
+
         return false;
     }
 

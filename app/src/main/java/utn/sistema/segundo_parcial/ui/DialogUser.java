@@ -19,10 +19,16 @@ import utn.sistema.segundo_parcial.R;
 public class DialogUser extends AppCompatDialogFragment
 {
     User user;
+    String query;
 
     public DialogUser(User user)
     {
         this.user = user;
+    }
+
+    public DialogUser(String query)
+    {
+        this.query = query;
     }
 
     @NonNull
@@ -30,24 +36,18 @@ public class DialogUser extends AppCompatDialogFragment
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // View
-        LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-        View view = layoutInflater.inflate(R.layout.dialog_add, null);
-        TextView textTitulo = (TextView) view.findViewById(R.id.txtTitulo);
-        TextView textRol = (TextView) view.findViewById(R.id.txtRol);
 
         if(this.user != null)
         {
-            textTitulo.setText("Usuario encontrado");
-            textRol.setText("El rol del usuario es " + this.user.getRol());
+            builder.setTitle("Usuario encontrado");
+            builder.setMessage("El rol del usuario es " + this.user.getRol());
         }
         else
         {
-            textTitulo.setText("Usuario no encontrado");
-            textRol.setText("El usuario " + this.user.getUsername() + "no está dentro de la lista");
+            builder.setTitle("Usuario no encontrado");
+            builder.setMessage("El usuario " + this.query + " no está dentro de la lista");
         }
 
-        builder.setView(view);
         builder.setPositiveButton("CERRAR", null);
 
         return builder.create();
